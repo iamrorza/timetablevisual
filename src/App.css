@@ -2,37 +2,39 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.enterDataTab{
+  position:absolute;
+  width:90%;
+  left:5%;
+  top:2%;
+  height:40%;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-color: aquamarine;
 }
+.inputPanel{
+  position:absolute;
+  width:25%;
+  left:5%;
+  top:5%;
+  height:90%;
+  background-color: rgb(197, 127, 255);
+}
+.singularInput{
+  position:absolute;
+  width:90%;
+  left:5%;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height:20%;
+  background-color: rgb(176, 139, 206);
+  text-align: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.subjectInput{
+  top:10%;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.classInput{
+  top:40%;
+}
+.lengthInput{
+  top:70%;
 }
