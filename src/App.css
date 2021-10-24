@@ -26,8 +26,7 @@
 
   height:20%;
   background-color: rgb(176, 139, 206);
-  text-align: center;
-  justify-content: center;
+
 }
 .subjectInput{
   top:10%;
@@ -37,4 +36,90 @@
 }
 .lengthInput{
   top:70%;
+}
+.submitButton{
+  position: absolute;
+
+  height:8%;
+  width:28%;
+  left:36%;
+  top:91%;
+
+  background-color: rgb(107, 185, 44);
+}
+
+.timePanel{
+  position:absolute;
+  width:50%;
+  left:45%;
+  top:5%;
+  height:90%;
+  background-color: rgb(197, 127, 255);
+
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+
+  gap: 10px 20px;
+}
+.timeButton{
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  height:40px;
+  width:70px;
+  border: 2px black solid;
+}
+.timeButtonClicked{
+  background-color: rgb(93, 146, 224);
+  border-radius: 25px;
+  height:40px;
+  width:70px;
+  border: 2px black solid;
+}
+.timeButtonClicked:hover{
+  background-color: rgb(73, 126, 206);
+}
+.timeButton:hover{
+  background-color: rgb(167, 167, 167);
+}
+.textCenter{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dayPanel{
+  position:absolute;
+  width:15%;
+  left:30%;
+  top:5%;
+  height:90%;
+  background-color: rgb(197, 127, 255);
+
+  display: flex;
+  flex-wrap:wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 10px 0px;
+}
+.dayButton{
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  height:40px;
+  width:100px;
+  border: 2px black solid;
+}
+.dayButton:hover{
+  background-color: rgb(233, 233, 233);
+}
+.dayButtonClicked:hover{
+  background-color: rgb(73, 126, 206);
+}
+.dayButtonClicked{
+  background-color: rgb(116, 136, 226);
+  border-radius: 25px;
+  height:40px;
+  width:100px;
+  border: 2px black solid;
 }
