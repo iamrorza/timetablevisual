@@ -123,3 +123,37 @@
   width:100px;
   border: 2px black solid;
 }
+.timetableMain{
+  position: absolute;
+  top:42%;
+  height: 50%;
+  left:5%;
+  width:90%;
+  background-color: rgb(255, 35, 200);
+}
+.dayrow{
+  position: absolute;
+  top:10%;
+  height: 18%;
+  left:0%;
+  width:100%;
+  background-color: rgb(255, 255, 255);
+}
+.dayChooser{
+  position: absolute;
+  top:0%;
+  height: 10%;
+  left:0%;
+  width:100%;
+  border:1px black solid;
+  background-color: rgb(255, 255, 255);
+}
+.hournames{
+  position: absolute;
+  top:90%;
+  height: 10%;
+  left:0%;
+  width:100%;
+  border:1px black solid;
+  background-color: rgb(255, 255, 255);
+}

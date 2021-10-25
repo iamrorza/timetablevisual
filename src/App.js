@@ -4,7 +4,7 @@ import MainWebsite from './input.js'
 import './App.css';
 import Timetable from './timetable/timetable.js';
 import Block from './timetable/block.js';
-import BestResults from './timetable/bestresults.js';
+import TimetableVisual from './timetableVisual/timetableVisual.js';
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <MainWebsite />
-      <Thing text ={tt.bestResults} />
+      <TimetableVisual results={tt.results} />
     </div>
   );
 }
@@ -40,9 +40,5 @@ function Thing(props){
   )
 }
 
-function TimetableVisual(props){
-  return (
-    <div class="timetable"></div>
-  )
-}
+
 export default App;

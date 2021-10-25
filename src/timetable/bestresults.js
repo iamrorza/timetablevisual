@@ -4,12 +4,9 @@ class BestResults{
         this.best = [];
     }
     add(record){
-       
         this.best.push(record)
         if(this.best.length>1)this.sort();
-        console.log(this.best)
-        
-        //if(this.best.length > this.maxsize)this.best.pop(this.best.length-1)
+        if(this.best.length > this.maxsize)this.best.pop(this.best.length-1)
     }
     sort(){
         var temp = [];
