@@ -16,13 +16,13 @@ class Timetable{
     canPlaceBlock(block, num){
         var day = block.potentialTimes[num][0]
         var time = block.potentialTimes[num][1]
-        if(this.timetable[day].length!=0 && this.isPreferredDay(day)){
+        if(this.timetable[day].length!==0 && this.isPreferredDay(day)){
             for(var i = 0; i < this.timetable[day].length;++i){
                 if(time < this.timetable[day][i].getTime() + this.timetable[day][i].block.length && time + block.length < this.timetable[day][i].getTime()){
                     return false
                 }
             }
-        }else if(this.timetable[day].length==0 && !this.isPreferredDay(day)) return false;
+        }else if(this.timetable[day].length===0 && !this.isPreferredDay(day)) return false;
 
         return true;
     }
@@ -52,7 +52,7 @@ class Timetable{
     daysOff(){
         var count = 0;
         for(var i = 0; i < 5; ++i ){
-            if(this.timetable[i].length==0)++count;
+            if(this.timetable[i].length===0)++count;
         }
         return count;
     }
@@ -84,7 +84,7 @@ class Timetable{
         var size = dayList.length
         
         if(size<2)return 0;
-        else if(size == 2){
+        else if(size === 2){
             return dayList[1].getTime() - (dayList[0].getTime() + dayList[0].block.length) 
         }
         else{
@@ -114,7 +114,7 @@ class Timetable{
                 }
                 else{
                     var strin = this.stringify();
-                    this.bestResults.add(new Recorder(strin,this.daysOff(),this.totalGap()))
+                    this.bestResults.add( new Recorder( strin ,this.daysOff(),this.totalGap()))
                 }
                 this.removeBlock(blockArray[currentBlockIndex],i)
             }
@@ -152,14 +152,14 @@ class Timetable{
                 this.permute(ar,k+1)
             }
         }
-        if(k==ar.length){
+        if(k===ar.length){
             this.recursiveCheck(0,ar)
         }
     }
     stringify(){
         var string = "";
         for(var i = 0; i < 5;++i){
-            if(this.timetable[i].length!=0){
+            if(this.timetable[i].length!==0){
                 string += this.timetable[i].reduce(function(stringg, classs){
                     let string = stringg + "," + classs.toString()
                     return string

@@ -35,8 +35,14 @@ function blockArray(ar){
 function Thing(props){
   return(
     <div>
-      
+      {props.text.best[0].getTableString()}
     </div>
+  )
+}
+
+function TimetableVisual(props){
+  return (
+    <div class="timetable"></div>
   )
 }
 export default App;
