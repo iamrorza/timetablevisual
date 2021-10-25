@@ -4,13 +4,15 @@ import ProposedClass from './proposedclass.js';
 import Recorder from './recorder.js';
 
 class Timetable{
-    constructor(blockArray,preferredDays){
+    constructor(blockArray,preferredDays, timetable){
         this.blockArray = blockArray
         this.preferredDays = preferredDays
-        this.timetable = [[],[],[],[],[]]
+        this.timetable = timetable
+        
 
-        this.bestResults = new BestResults(5)
+        this.bestResults = new BestResults(2)
     }
+    
     canPlaceBlock(block, num){
         var day = block.potentialTimes[num][0]
         var time = block.potentialTimes[num][1]
@@ -29,9 +31,10 @@ class Timetable{
     }
     placeBlock(block, num){
         var day = block.potentialTimes[num][0]
-        this.timetable[day].push(new ProposedClass(block,num))
-        console.log("BLOCK PLACED" + block)
-        console.log(this.timetable)
+        var pc = new ProposedClass(block,num)
+        this.timetable[day].push(pc)
+        //console.log(pc)
+        //console.log(this.timetable)
     }
     removeBlock(block,num){
         var day = block.potentialTimes[num][0];
@@ -39,7 +42,10 @@ class Timetable{
     }
     getProposedClassFromDay(block, day){
         for(var i =0; i < this.timetable[day].length; ++i){
-            if(this.timetable[day][i]===block)return i
+            if(this.timetable[day][i].block===block){
+                //console.log("HERHEHREHRhERHREH")
+                return i
+            }
         }
         return null;
     }
@@ -51,6 +57,10 @@ class Timetable{
         return count;
     }
     sortDays(){
+        for(var i = 0; i < 5; ++i){
+            this.timetable[i].sort(function(a,b){return a-b})
+        }
+        /*
         for(var i = 0; i < 5; ++i){
             var dayList = this.timetable[i]
             if(dayList.length>1){
@@ -67,10 +77,12 @@ class Timetable{
                 }
             }
         }
+        */
     }
     singleDayGap(dayList){
        
         var size = dayList.length
+        
         if(size<2)return 0;
         else if(size == 2){
             return dayList[1].getTime() - (dayList[0].getTime() + dayList[0].block.length) 
@@ -80,7 +92,7 @@ class Timetable{
             for(var i = 1; i < dayList.length-1; ++i){
                 classesInbetweenLength += dayList[i].block.length;
             }
-
+            
             return dayList[size-1].getTime() - (dayList[0].getTime() + dayList[0].block.length) - classesInbetweenLength;
         }
     }
@@ -101,13 +113,13 @@ class Timetable{
                     this.recursiveCheck(currentBlockIndex+1,blockArray)
                 }
                 else{
-                    
-                    this.bestResults.add(new Recorder(this.timetable, this.daysOff(), this.totalGap()))
+                    let tt = Object.assign(Object.create(Object.getPrototypeOf(this.timetable)), this.timetable)
+                    this.bestResults.add(new Recorder(tt, this.daysOff(), this.totalGap()))
                 }
                 this.removeBlock(blockArray[currentBlockIndex],i)
             }
             else{
-                //Cannot Place Block
+                //console.log("CANNOT PLACE CKASS")
             }
         }
     }

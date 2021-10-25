@@ -8,17 +8,17 @@ import BestResults from './timetable/bestresults.js';
 
 function App() {
 
-  let array = [["PAN","LAB","2",[[0,12],[0,15]]],["PAN","CMP","3",[[0,15],[1,14]]]]
+  let array = [ ["PAN","LAB","2",[[0,12],[0,15]]] , ["PAN","CMP","3",[[0,15],[1,14]]] ]
   let ba = blockArray(array)
   console.log(ba)
-  let tt = new Timetable(ba,[true,true,true,true,true])
+  let tt = new Timetable(ba,[true,true,true,true,true],[[],[],[],[],[]])
   tt.permute(tt.blockArray,0)
 
-  console.log(tt.bestResults)
+  tt.bestResults.best.forEach((e) => console.log(e.print()))
   return (
     <div className="App">
       <MainWebsite />
-
+      <Thing text ={tt.bestResults} />
     </div>
   );
 }
@@ -32,4 +32,11 @@ function blockArray(ar){
   return blockArray
 }
 
+function Thing(props){
+  return(
+    <div>
+      {props.text.best[0].print()}
+    </div>
+  )
+}
 export default App;

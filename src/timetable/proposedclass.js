@@ -6,6 +6,9 @@ class ProposedClass{
     getTime(){
         return this.block.potentialTimes[this.arrayTimeIndex];
     }
+    toString(){
+        return `${this.block.toString()}: ${this.block.potentialTimes[this.arrayTimeIndex][1]}`
+    }
 }
 
 export default ProposedClass
