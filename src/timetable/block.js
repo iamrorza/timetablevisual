@@ -8,8 +8,9 @@ class Block{
     timesLength(){
         return this.potentialTimes.length
     }
+    
     toString(){
-        return "[" + this.subject + ", " + this.name + ", " + this.length + "]";
+        return this.subject + "," + this.name + "," + this.length;
     }
 }
 export default Block;

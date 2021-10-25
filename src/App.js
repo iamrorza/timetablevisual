@@ -14,7 +14,7 @@ function App() {
   let tt = new Timetable(ba,[true,true,true,true,true],[[],[],[],[],[]])
   tt.permute(tt.blockArray,0)
 
-  tt.bestResults.best.forEach((e) => console.log(e.print()))
+  
   return (
     <div className="App">
       <MainWebsite />
@@ -35,7 +35,7 @@ function blockArray(ar){
 function Thing(props){
   return(
     <div>
-      {props.text.best[0].print()}
+      
     </div>
   )
 }

@@ -5,7 +5,7 @@ class Recorder{
         this.gap = gap;
     }
     print(){
-        console.log(this.table)
+        
         const stringg =this.table.reduce(function(string,day){
             if(day.length==0){
                 return "";

@@ -32,7 +32,7 @@ class Timetable{
     placeBlock(block, num){
         var day = block.potentialTimes[num][0]
         var pc = new ProposedClass(block,num)
-        this.timetable[day].push(pc)
+        this.timetable[day].push(Object.assign(Object.create(Object.getPrototypeOf(pc)), pc))
         //console.log(pc)
         //console.log(this.timetable)
     }
@@ -113,8 +113,8 @@ class Timetable{
                     this.recursiveCheck(currentBlockIndex+1,blockArray)
                 }
                 else{
-                    let tt = Object.assign(Object.create(Object.getPrototypeOf(this.timetable)), this.timetable)
-                    this.bestResults.add(new Recorder(tt, this.daysOff(), this.totalGap()))
+                    var strin = this.stringify();
+                    this.bestResults.add(new Recorder(strin,this.daysOff(),this.totalGap()))
                 }
                 this.removeBlock(blockArray[currentBlockIndex],i)
             }
@@ -124,27 +124,29 @@ class Timetable{
         }
     }
     swap(ar,k,i){
-        let temp = ar[k]
-        ar[k] = ar[i]
-        ar[i] = temp
+
+        var a = ar[i], b = ar[k];
+        ar[k] = a;
+        ar[i] = b;
+
     }
     swapOverlap(x,y,ar){
-        for(var i =0;i<ar[x].timesLength();++i){
-            for(var j = 0; j <ar[y].timesLength();++j){
-                if(ar[x].potentialTimes[i][0] === ar[y].potentialTimes[j][0])return true
+        if(y!==x){
+            for(var i =0;i<ar[x].timesLength();++i){
+                for(var j = 0; j <ar[y].timesLength();++j){
+                    if(ar[x].potentialTimes[i][0] === ar[y].potentialTimes[j][0])return true
+                }
             }
         }
         return false;
     }
 
     permute(ar,k){
-        
         for(var i = k;i<ar.length;i++){
             if(this.swapOverlap(i,k,ar)){
                 this.swap(ar,i,k)
                 this.permute(ar,k+1)
                 this.swap(ar,k,i)
-                
             }
             else{
                 this.permute(ar,k+1)
@@ -153,6 +155,18 @@ class Timetable{
         if(k==ar.length){
             this.recursiveCheck(0,ar)
         }
+    }
+    stringify(){
+        var string = "";
+        for(var i = 0; i < 5;++i){
+            if(this.timetable[i].length!=0){
+                string += this.timetable[i].reduce(function(stringg, classs){
+                    let string = stringg + "," + classs.toString()
+                    return string
+                })
+            }
+        }
+        return string;
     }
     day(i){
         switch(i){
