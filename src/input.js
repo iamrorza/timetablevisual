@@ -106,7 +106,7 @@ class MainWebsite extends React.Component{
                     index = i;
                 }
             }
-            array.splice(index,index+1);
+            array.splice(index,1);
         }
         this.props.updateTimeArray(array)
         
