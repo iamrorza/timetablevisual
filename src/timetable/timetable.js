@@ -10,7 +10,7 @@ class Timetable{
         this.timetable = timetable
         
 
-        this.bestResults = new BestResults(2)
+        this.bestResults = new BestResults(5)
     }
     
     canPlaceBlock(block, num){

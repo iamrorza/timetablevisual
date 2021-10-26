@@ -157,3 +157,10 @@
   border:1px black solid;
   background-color: rgb(255, 255, 255);
 }
+.arrow{
+  height:100%;
+  transition: 0.1s;
+}
+.arrow:hover{
+  transform:scale(1.4);
+}

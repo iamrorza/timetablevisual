@@ -8,7 +8,7 @@ import TimetableVisual from './timetableVisual/timetableVisual.js';
 
 function App() {
 
-  let array = [ ["PAN","LAB","2",[[0,12],[0,15]]] , ["PAN","CMP","3",[[0,15],[1,14]]] ]
+  let array = [ ["PAN","LAB","2",[[0,12.5],[0,15.5]]] , ["PAN","CMP","3",[[0,15],[1,14]]] ]
   let ba = blockArray(array)
   console.log(ba)
   let tt = new Timetable(ba,[true,true,true,true,true],[[],[],[],[],[]])
@@ -18,7 +18,8 @@ function App() {
   return (
     <div className="App">
       <MainWebsite />
-      <TimetableVisual results={tt.results} />
+      <Thing best={tt.bestResults} />
+      <TimetableVisual results={tt.bestResults} />
     </div>
   );
 }
@@ -35,7 +36,7 @@ function blockArray(ar){
 function Thing(props){
   return(
     <div>
-      {props.text.best[0].getTableString()}
+      {props.best.best[0].getTableString()}
     </div>
   )
 }
