@@ -10,27 +10,43 @@ function App() {
 
   const[preferredDays,setPrefferedDays]=useState([true,true,true,true,true])
   const[classes,setClasses]=useState([])
+  const[generate,setGenerate]=useState(false)
 
-  let array = [ ["PAN","LAB","2",[[0,12.5],[0,15.5]]] , ["PAN","CMP","3",[[0,15],[1,14]]] ]
-  let ba = blockArray(array)
-  console.log(ba)
-  let tt = new Timetable(ba,preferredDays,[[],[],[],[],[]])
-  tt.permute(tt.blockArray,0)
-
+  if(generate){
+    let array = [ ["PAN","LAB","2",[[0,12.5],[0,15.5]]] , ["PAN","CMP","3",[[0,15],[1,14]]] ]
+    let ba = blockArray(classes)
+    console.log(ba)
+    let tt = new Timetable(ba,preferredDays,[[],[],[],[],[]])
+    tt.permute(tt.blockArray,0)
   
-  return (
-    <div className="App">
-      <MainWebsite 
-            preferredDays={preferredDays} 
-            classes={classes}
-            setPreferredDays={setPrefferedDays}
-            setClasses={setClasses} />
-
-      <Thing best={tt.bestResults} />
-
-      <TimetableVisual results={tt.bestResults} />
-    </div>
-  );
+    return (
+      <div className="App">
+        <MainWebsite 
+              preferredDays={preferredDays} 
+              classes={classes}
+              setPreferredDays={setPrefferedDays}
+              setClasses={setClasses}
+              setGenerate={setGenerate} />
+  
+        <Thing best={tt.bestResults} />
+  
+        <TimetableVisual results={tt.bestResults} />
+      </div>
+    );
+  }
+  else{
+    return (
+      <div className="App">
+        <MainWebsite 
+              preferredDays={preferredDays} 
+              classes={classes}
+              setPreferredDays={setPrefferedDays}
+              setClasses={setClasses}
+              setGenerate={setGenerate} />
+      </div>
+    );
+  }
+  
 }
 
 function blockArray(ar){

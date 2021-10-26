@@ -65,10 +65,19 @@ class MainWebsite extends React.Component{
                 <TimeInput currentDay={this.state.day} updateTimeArray={this.updateTimeArray} timeArray = {this.state.currentClassTimes}/>
             </div>
             <RemoveDay preferredDays={this.state.preferredDays} setPDays={this.changePreferredDays}/>
+            <GenerateButton setGenerate={this.props.setGenerate}/>
         </div>
         
       )
     }
+  }
+
+  function GenerateButton(props){
+    return(
+      <div class="generateButton textCenter" onClick={() => props.setGenerate(true)}>
+        Generate Timetable
+      </div>
+    )
   }
     function RemoveDay(props){
 

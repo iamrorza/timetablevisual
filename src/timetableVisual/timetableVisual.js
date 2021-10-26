@@ -19,6 +19,7 @@ function TimetableVisual(props){
 
     const size = splitArray.length/5
     for( i =0; i < size;++i){
+        console.log(splitArray)
         blockArray.push(<Block classInfo={splitArray.splice(0,5)} />)
     }
     return (
@@ -33,7 +34,7 @@ function TimetableVisual(props){
     )
 }
 function Block(props){
-    console.log(props.classInfo)
+    //console.log(props.classInfo)
 
     const day = parseInt(props.classInfo[3]), startTime = parseFloat(props.classInfo[4]), length = parseFloat(props.classInfo[2]);
 
@@ -81,7 +82,6 @@ function returnString(time,length){
 }
 
 function Line(props){
-    console.log(props.key)
     const style ={
         "position": "absolute",
         "top": "10%",
@@ -90,8 +90,7 @@ function Line(props){
         "width":(100/26).toString().concat("%"),
         "backgroundColor":" rgba(255, 255, 255,0)",
         "borderStyle":"none solid none none",
-        "borderWidth":"1px",
-        
+        "borderWidth":"1px",  
     }
     return(
         <div style={style}>

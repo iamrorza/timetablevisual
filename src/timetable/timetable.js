@@ -161,11 +161,13 @@ class Timetable{
         for(var i = 0; i < 5;++i){
             if(this.timetable[i].length!==0){
                 string += this.timetable[i].reduce(function(stringg, classs){
-                    let string = stringg + "," + classs.toString()
+                    let string = stringg + "," + classs.toString() + ","
+                    
                     return string
                 })
             }
         }
+        console.log(string)
         return string;
     }
     day(i){
