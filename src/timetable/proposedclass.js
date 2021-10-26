@@ -4,7 +4,7 @@ class ProposedClass{
         this.arrayTimeIndex = arrayTimeIndex
     }
     getTime(){
-        return this.block.potentialTimes[this.arrayTimeIndex];
+        return this.block.potentialTimes[this.arrayTimeIndex][1];
     }
     toString(){
         return `${this.block.toString()},${this.block.potentialTimes[this.arrayTimeIndex][0]},${this.block.potentialTimes[this.arrayTimeIndex][1]}`

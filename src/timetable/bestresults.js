@@ -4,9 +4,14 @@ class BestResults{
         this.best = [];
     }
     add(record){
-        this.best.push(record)
-        if(this.best.length>1)this.sort();
-        if(this.best.length > this.maxsize)this.best.pop(this.best.length-1)
+        if(this.isNotDuplicate(record)){
+            this.best.push(record)
+            if(this.best.length>1)this.sort();
+            if(this.best.length > this.maxsize)this.best.pop(this.best.length-1)
+        }
+        else{
+            console.log("DUPLICATE")
+        }
     }
     sort(){
         var temp = [];
@@ -30,6 +35,11 @@ class BestResults{
         this.best = temp
     }
 
-    
+    isNotDuplicate(record){
+        for(var result of this.best){
+            if(this.best.at(result).getTableString()===record.getTableString())return false;
+        }
+        return true;
+    }
 }
 export default BestResults

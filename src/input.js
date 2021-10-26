@@ -1,4 +1,3 @@
-import { PROPERTY_TYPES } from "@babel/types";
 import React, {useState} from "react";
 
 class MainWebsite extends React.Component{
@@ -95,8 +94,7 @@ class MainWebsite extends React.Component{
     function RemoveDayButtonPanel(props){
       
       const[localPDays,setLocalPDays]=useState(props.preferredDays)
-      console.log(props.preferredDays)
-      console.log(localPDays)
+
       return(
         <div class="removeDayButtonPanel">
           <RemoveDayButton day={"Mon"} clicked={localPDays} dayNum={0} setPDays={props.setPDays} setLocalPDays={setLocalPDays}/>

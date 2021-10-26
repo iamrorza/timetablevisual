@@ -16,13 +16,13 @@ class Timetable{
     canPlaceBlock(block, num){
         var day = block.potentialTimes[num][0]
         var time = block.potentialTimes[num][1]
-        if(this.timetable[day].length!==0 && this.isPreferredDay(day)){
-            for(var i = 0; i < this.timetable[day].length;++i){
-                if(time < this.timetable[day][i].getTime() + this.timetable[day][i].block.length && time + block.length < this.timetable[day][i].getTime()){
+        if(this.timetable.at(day).length!==0 && this.isPreferredDay(day)){
+            for(var i = 0; i < this.timetable.at(day).length;++i){
+                if(time < this.timetable.at(day).at(i).getTime() + this.timetable.at(day).at(i).block.length && time + block.length < this.timetable.at(day).at(i).getTime()){
                     return false
                 }
             }
-        }else if(this.timetable[day].length===0 && !this.isPreferredDay(day)) return false;
+        }else if(this.timetable.at(day).length===0 && !this.isPreferredDay(day)) return false;
 
         return true;
     }
@@ -32,7 +32,7 @@ class Timetable{
     placeBlock(block, num){
         var day = block.potentialTimes[num][0]
         var pc = new ProposedClass(block,num)
-        this.timetable[day].push(Object.assign(Object.create(Object.getPrototypeOf(pc)), pc))
+        this.timetable[day].push(pc)
         //console.log(pc)
         //console.log(this.timetable)
     }
@@ -52,49 +52,37 @@ class Timetable{
     daysOff(){
         var count = 0;
         for(var i = 0; i < 5; ++i ){
-            if(this.timetable[i].length===0)++count;
+            if(this.timetable.at(i).length===0)++count;
         }
         return count;
     }
     sortDays(){
         for(var i = 0; i < 5; ++i){
-            this.timetable[i].sort(function(a,b){return a-b})
+            this.timetable.at(i).sort(function(a,b){
+                var keyA = a.getTime(), keyB = b.getTime();
+                if(keyA<keyB) return -1
+                if(keyA>keyB) return 1
+                return 0
+            })
         }
-        /*
-        for(var i = 0; i < 5; ++i){
-            var dayList = this.timetable[i]
-            if(dayList.length>1){
-                for (var j = 0; j < dayList.length-1; ++j) {
-                    var smallest = dayList[j];
-                    for (var k = j+1; k < dayList.length; ++k) {
-                         if (dayList[k].getTime() < smallest.getTime()) {
-                            smallest = dayList[k];
-                        }
-                    }
-                    var temp = dayList[j]
-                    dayList[j] = dayList[dayList.indexOf(smallest)]
-                    dayList[dayList.indexOf(smallest)] = temp
-                }
-            }
-        }
-        */
     }
     singleDayGap(dayList){
        
         var size = dayList.length
-        
         if(size<2)return 0;
         else if(size === 2){
-            return dayList[1].getTime() - (dayList[0].getTime() + dayList[0].block.length) 
+            const d = dayList.at(1).getTime() - (dayList.at(0).getTime() + dayList.at(0).block.length) 
+            return d
         }
         else{
             var classesInbetweenLength = 0;
             for(var i = 1; i < dayList.length-1; ++i){
-                classesInbetweenLength += dayList[i].block.length;
+                classesInbetweenLength += dayList.at(i).block.length;
             }
             
-            return dayList[size-1].getTime() - (dayList[0].getTime() + dayList[0].block.length) - classesInbetweenLength;
+            return dayList.at(size-1).getTime() - (dayList.at(0).getTime() + dayList.at(0).block.length) - classesInbetweenLength;
         }
+
     }
     totalGap(){
         this.sortDays();
@@ -124,11 +112,9 @@ class Timetable{
         }
     }
     swap(ar,k,i){
-
         var a = ar[i], b = ar[k];
         ar[k] = a;
         ar[i] = b;
-
     }
     swapOverlap(x,y,ar){
         if(y!==x){
@@ -157,17 +143,18 @@ class Timetable{
         }
     }
     stringify(){
+        this.sortDays()
         var string = "";
         for(var i = 0; i < 5;++i){
             if(this.timetable[i].length!==0){
                 string += this.timetable[i].reduce(function(stringg, classs){
-                    let string = stringg + "," + classs.toString() + ","
+                    let string = stringg +"," + classs.toString() + ","
                     
                     return string
                 })
             }
         }
-        console.log(string)
+        string = string.substr(0,string.length-1)
         return string;
     }
     day(i){

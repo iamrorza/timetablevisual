@@ -14,12 +14,13 @@ function TimetableVisual(props){
     }
 
     
-    const splitArray = props.results.best[day].table.split(",")
+    const splitArray = props.results.best[day].table.split(",").filter(isNotEmpty)
+
     let blockArray = [];
 
     const size = splitArray.length/5
     for( i =0; i < size;++i){
-        console.log(splitArray)
+
         blockArray.push(<Block classInfo={splitArray.splice(0,5)} />)
     }
     return (
@@ -172,5 +173,7 @@ function Arrow(props){
         </div>
     )
 }
-
+function isNotEmpty(value){
+    return value !== ''
+}
 export default TimetableVisual;
