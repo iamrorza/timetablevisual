@@ -31,9 +31,6 @@ function App() {
               setPreferredDays={setPrefferedDays}
               setClasses={setClasses}
               setGenerate={setGenerate} />
-  
-        <Thing best={tt.bestResults} />
-  
         <TimetableVisual results={tt.bestResults} />
       </div>
     );

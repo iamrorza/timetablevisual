@@ -8,8 +8,6 @@
   left:5%;
   top:2%;
   height:40%;
-
-  background-color: aquamarine;
 }
 .inputPanel{
   position:absolute;
@@ -17,7 +15,9 @@
   left:5%;
   top:0%;
   height:90%;
-  background-color: rgb(252, 0, 0);
+  border-style: solid none solid solid;
+  border-width: 1px;
+  
 }
 .singularInput{
   position:absolute;
@@ -25,7 +25,7 @@
   left:5%;
 
   height:20%;
-  background-color: rgb(102, 255, 0);
+  
 
 }
 .subjectInput{
@@ -44,18 +44,23 @@
   width:28%;
   left:36%;
   top:91%;
-
-  background-color: rgb(107, 185, 44);
+  border-radius:50px;
+  border: 1px solid black;
+  
 }
-
+.submitButton:hover{
+  background-color: rgb(167, 167, 167);
+}
 .timePanel{
   position:absolute;
   width:40%;
   left:41%;
   top:0%;
   height:90%;
-  background-color: rgb(9, 160, 55);
+  
 
+  border-style: solid solid solid none;
+  border-width:1px ;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -94,7 +99,8 @@
   left:27%;
   top:0%;
   height:90%;
-  background-color: rgb(197, 127, 255);
+  border-style: solid none solid solid;
+  border-width: 1px;
 
   display: flex;
   flex-wrap:wrap;
@@ -111,7 +117,7 @@
   border: 2px black solid;
 }
 .dayButton:hover{
-  background-color: rgb(233, 233, 233);
+  background-color: rgb(167, 167, 167);
 }
 .dayButtonClicked:hover{
   background-color: rgb(73, 126, 206);
@@ -129,7 +135,7 @@
   height: 50%;
   left:5%;
   width:90%;
-  background-color: rgb(255, 35, 200);
+  
 }
 .dayrow{
   position: absolute;
@@ -170,8 +176,8 @@
   left:81%;
   height:90%;
   width:14%;
-
-  background-color: darkgreen;
+  border:1px solid black;
+ 
 }
 .removeDayTitle{
   position:absolute;
@@ -179,7 +185,7 @@
   height:10%;
   width:90%;
   left:5%;
-  background-color: firebrick;
+  
 }
 .removeDayButtonPanel{
   position:absolute;
@@ -187,7 +193,7 @@
   left:0%;
   top:0%;
   height:100%;
-  background-color: rgb(197, 127, 255);
+  
 
   display: flex;
   flex-wrap:wrap;
@@ -228,5 +234,5 @@
   background-color: white;
 }
 .generateButton:hover{
-  background-color: rgb(216, 216, 216);
+  background-color: rgb(167, 167, 167);
 }
