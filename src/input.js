@@ -1,3 +1,4 @@
+import { PROPERTY_TYPES } from "@babel/types";
 import React, {useState} from "react";
 
 class MainWebsite extends React.Component{
@@ -5,14 +6,25 @@ class MainWebsite extends React.Component{
       super(props)
       this.state ={
         day:0,
-        classes:[],
-        currentClassTimes:[]
+        classes:props.classes,
+        currentClassTimes:[],
+        preferredDays:props.preferredDays
       }
       this.changeDay = this.changeDay.bind(this)
       this.updateTimeArray = this.updateTimeArray.bind(this)
       this.addClass = this.addClass.bind(this)
+      this.changePreferredDays = this.changePreferredDays.bind(this)
     }
-    
+    changePreferredDays(days){
+
+      this.setState({
+        day:this.state.day,
+        classes:this.state.classes,
+        currentClassTimes:this.state.currentClassTimes,
+        preferredDays:days
+      })
+      this.props.setPreferredDays(days)
+    }
     addClass(uniClass){
       
     let stateClasses = this.state.classes;
@@ -23,7 +35,6 @@ class MainWebsite extends React.Component{
     stateClasses.push(newclass)
       
     this.setState({
-        classes:stateClasses,
         day:this.state.day,
         currentClassTimes:[]
     })
@@ -41,6 +52,7 @@ class MainWebsite extends React.Component{
         })
     }
     render(){
+      
       return(
         
         <div class="enterDataTab">
@@ -52,11 +64,57 @@ class MainWebsite extends React.Component{
             <div class="timePanel">
                 <TimeInput currentDay={this.state.day} updateTimeArray={this.updateTimeArray} timeArray = {this.state.currentClassTimes}/>
             </div>
+            <RemoveDay preferredDays={this.state.preferredDays} setPDays={this.changePreferredDays}/>
         </div>
         
       )
     }
   }
+    function RemoveDay(props){
+
+      console.log(props)
+      return(
+        <div class="removeDayPanel">
+          
+          <RemoveDayButtonPanel preferredDays={props.preferredDays} setPDays={props.setPDays} />
+          <div class="removeDayTitle textCenter">Preferred Days</div>
+        </div>
+      )
+      
+    }
+
+    function RemoveDayButtonPanel(props){
+      
+      const[localPDays,setLocalPDays]=useState(props.preferredDays)
+      console.log(props.preferredDays)
+      console.log(localPDays)
+      return(
+        <div class="removeDayButtonPanel">
+          <RemoveDayButton day={"Mon"} clicked={localPDays} dayNum={0} setPDays={props.setPDays} setLocalPDays={setLocalPDays}/>
+          <RemoveDayButton day={"Tue"} clicked={localPDays} dayNum={1} setPDays={props.setPDays} setLocalPDays={setLocalPDays}/>
+          <RemoveDayButton day={"Wed"} clicked={localPDays} dayNum={2} setPDays={props.setPDays} setLocalPDays={setLocalPDays}/>
+          <RemoveDayButton day={"Thurs"} clicked={localPDays} dayNum={3} setPDays={props.setPDays} setLocalPDays={setLocalPDays}/>
+          <RemoveDayButton day={"Fri"} clicked={localPDays} dayNum={4} setPDays={props.setPDays} setLocalPDays={setLocalPDays}/>
+        </div>
+      )
+    }
+    function RemoveDayButton(props){
+      var styleClass ="";
+      if(props.clicked[props.dayNum])styleClass="removeDayButton textCenter"
+      else styleClass="removeDayButtonClicked textCenter"
+      
+      return(
+          <div class={styleClass}
+          onClick={() => {
+            let ar = props.clicked;
+            ar[props.dayNum] = !ar[props.dayNum]
+            props.setLocalPDays(ar)
+            props.setPDays(ar)
+            }}>
+              {props.day}
+          </div>
+      )
+    }
 
     function DayPanel(props){
         return(
@@ -71,8 +129,6 @@ class MainWebsite extends React.Component{
     }
 
     function DayButton(props){
-        
-    
         var styleClass ="";
         
         if(props.buttonDay === props.currentDay)styleClass="dayButtonClicked textCenter"
@@ -177,7 +233,8 @@ class MainWebsite extends React.Component{
       <>
       <div class="singularInput subjectInput textCenter">
         <form>
-        <label>Enter Subject Name:    
+        <label>Enter Subject Name:  
+        <br />     
           <input 
             type="text" 
             value={subjectName}
@@ -189,7 +246,8 @@ class MainWebsite extends React.Component{
   
       <div class="singularInput classInput textCenter">
       <form>
-      <label>Enter Class:    
+      <label>Enter Class:
+        <br />    
         <input 
           type="text" 
           value={className}
@@ -201,7 +259,8 @@ class MainWebsite extends React.Component{
   
     <div class="singularInput lengthInput textCenter">
         <form>
-        <label>Enter Class Length:    
+        <label>Enter Class Length: 
+        <br />      
           <input 
             type="text" 
             value={length}

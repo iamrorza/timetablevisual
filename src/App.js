@@ -8,17 +8,26 @@ import TimetableVisual from './timetableVisual/timetableVisual.js';
 
 function App() {
 
+  const[preferredDays,setPrefferedDays]=useState([true,true,true,true,true])
+  const[classes,setClasses]=useState([])
+
   let array = [ ["PAN","LAB","2",[[0,12.5],[0,15.5]]] , ["PAN","CMP","3",[[0,15],[1,14]]] ]
   let ba = blockArray(array)
   console.log(ba)
-  let tt = new Timetable(ba,[true,true,true,true,true],[[],[],[],[],[]])
+  let tt = new Timetable(ba,preferredDays,[[],[],[],[],[]])
   tt.permute(tt.blockArray,0)
 
   
   return (
     <div className="App">
-      <MainWebsite />
+      <MainWebsite 
+            preferredDays={preferredDays} 
+            classes={classes}
+            setPreferredDays={setPrefferedDays}
+            setClasses={setClasses} />
+
       <Thing best={tt.bestResults} />
+
       <TimetableVisual results={tt.bestResults} />
     </div>
   );

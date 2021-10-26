@@ -9,7 +9,7 @@ function TimetableVisual(props){
         rowArray.push(<DayRow key={i} day={i} />)
     }
     let lineArray = []
-    for(var i = 0; i < 25; ++i){
+    for( i = 0; i < 25; ++i){
         lineArray.push(<Line key={i} halfHour={i} />)  
     }
 
@@ -18,7 +18,7 @@ function TimetableVisual(props){
     let blockArray = [];
 
     const size = splitArray.length/5
-    for(var i =0; i < size;++i){
+    for( i =0; i < size;++i){
         blockArray.push(<Block classInfo={splitArray.splice(0,5)} />)
     }
     return (
