@@ -14,15 +14,7 @@ function TimetableVisual(props){
     }
 
     
-    const splitArray = props.results.best[day].table.split(",").filter(isNotEmpty)
-
-    let blockArray = [];
-
-    const size = splitArray.length/5
-    for( i =0; i < size;++i){
-
-        blockArray.push(<Block classInfo={splitArray.splice(0,5)} />)
-    }
+    
     return (
       <div class="timetableMain">
           
@@ -30,8 +22,36 @@ function TimetableVisual(props){
           {rowArray}
           {lineArray}
           <HourNames />
-          {blockArray}
+          <Blocks results={props.results} day={day} />
+          
       </div>
+    )
+}
+
+
+function Blocks(props){
+    const splitArray = props.results.best[props.day].table.split(",").filter(isNotEmpty)
+
+    let blockArray = [];
+    let blockColour ={
+
+    }
+    const size = splitArray.length/5
+    for(var i =0; i < size;++i){
+        var colour;
+        if(blockColour.hasOwnProperty(splitArray.at(0))){
+            colour = blockColour[splitArray.at(0)]
+        }
+        else{
+           blockColour[splitArray.at(0)] = getColour(Object.keys(blockColour).length)
+           colour = blockColour[splitArray.at(0)]
+        }
+        blockArray.push(<Block classInfo={splitArray.splice(0,5)} colour={colour} />)
+    }
+    return(
+        <>
+            {blockArray}
+        </>
     )
 }
 function Block(props){
@@ -45,9 +65,10 @@ function Block(props){
         "height": "15.9%",
         "left": ( (startTime-8)*(200/26)).toString().concat("%"),
         "width":( length*200/26 -0.1) .toString().concat("%"),
-        "backgroundColor":" rgb(25, 255, 255)",
+        "backgroundColor":props.colour,
         "border":"1px solid black",
-        "textAlign":"left"
+        "textAlign":"left",
+        "boxShadow":"-7px -7px 3px rgba(100,100,100,0.3) inset,7px 7px 3px rgba(100,100,100,0.3) inset"
     }
     const timeString = returnString(startTime,length)
     return(
@@ -175,5 +196,24 @@ function Arrow(props){
 }
 function isNotEmpty(value){
     return value !== ''
+}
+
+function getColour(num){
+    switch(num){
+        case 0:
+            return "#de645b"
+        case 1:
+            return "#de9f5b"
+        case 2:
+            return "#6a6cd9"
+        case 3:
+            return "#d162c6"
+        case 4: 
+            return "#b27dd4"
+        case 5:
+            return "#e8f04f"
+        default:
+            return "rgb(255,255,255)"
+    }
 }
 export default TimetableVisual;

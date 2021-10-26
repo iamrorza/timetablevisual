@@ -16,10 +16,13 @@ class Timetable{
     canPlaceBlock(block, num){
         var day = block.potentialTimes[num][0]
         var time = block.potentialTimes[num][1]
+       
         if(this.timetable.at(day).length!==0 && this.isPreferredDay(day)){
             for(var i = 0; i < this.timetable.at(day).length;++i){
-                if(time < this.timetable.at(day).at(i).getTime() + this.timetable.at(day).at(i).block.length && time + block.length < this.timetable.at(day).at(i).getTime()){
+                if(time < this.timetable.at(day).at(i).getTime() + this.timetable.at(day).at(i).block.length && time + block.length > this.timetable.at(day).at(i).getTime()){
                     return false
+                }else{
+                    console.log(time,this.timetable.at(day).at(i).getTime() + this.timetable.at(day).at(i).block.length +" &" + (time + block.length) , this.timetable.at(day).at(i).getTime())
                 }
             }
         }else if(this.timetable.at(day).length===0 && !this.isPreferredDay(day)) return false;
