@@ -14,7 +14,7 @@ function TimetableVisual(props){
     }
 
     
-    
+    //TODO WHat happens if it gets no results?
     return (
       <div class="timetableMain">
           

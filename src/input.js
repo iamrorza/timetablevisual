@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 
+//TODO: Show currently added classes
 class MainWebsite extends React.Component{
     constructor(props){
       super(props)

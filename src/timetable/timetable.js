@@ -21,8 +21,6 @@ class Timetable{
             for(var i = 0; i < this.timetable.at(day).length;++i){
                 if(time < this.timetable.at(day).at(i).getTime() + this.timetable.at(day).at(i).block.length && time + block.length > this.timetable.at(day).at(i).getTime()){
                     return false
-                }else{
-                    console.log(time,this.timetable.at(day).at(i).getTime() + this.timetable.at(day).at(i).block.length +" &" + (time + block.length) , this.timetable.at(day).at(i).getTime())
                 }
             }
         }else if(this.timetable.at(day).length===0 && !this.isPreferredDay(day)) return false;
@@ -145,6 +143,8 @@ class Timetable{
             this.recursiveCheck(0,ar)
         }
     }
+
+    //FIXME strings sometimes missing last float character, other times its fine ????? Figure out
     stringify(){
         this.sortDays()
         var string = "";
