@@ -34,11 +34,11 @@ class BestResults{
         }
         this.best = temp
     }
-    //FIXME: Doesnt get every duplicate? FIX
     isNotDuplicate(record){
         for(var result of this.best){
-            if(this.best.at(result).getTableString()===record.getTableString())return false;
+            if(result.getTableString()===record.getTableString())return false;
         }
+        
         return true;
     }
 }

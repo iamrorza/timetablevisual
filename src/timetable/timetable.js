@@ -151,13 +151,14 @@ class Timetable{
         for(var i = 0; i < 5;++i){
             if(this.timetable[i].length!==0){
                 string += this.timetable[i].reduce(function(stringg, classs){
-                    let string = stringg +"," + classs.toString() + ","
+                    let string = stringg + "," + classs.toString() 
                     
                     return string
                 })
             }
         }
-        string = string.substr(0,string.length-1)
+       
+        
         return string;
     }
     day(i){

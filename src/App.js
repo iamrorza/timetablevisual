@@ -13,7 +13,6 @@ function App() {
   const[generate,setGenerate]=useState(false)
 
   if(generate){
-    //let array = [ ["PAN","LAB","2",[[0,12.5],[0,15.5]]] , ["PAN","CMP","3",[[0,15],[1,14]]] ]
     console.log(classes)
     let ba = blockArray(classes)
     console.log(ba)
