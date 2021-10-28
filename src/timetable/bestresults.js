@@ -35,10 +35,10 @@ class BestResults{
         this.best = temp
     }
     isNotDuplicate(record){
+        //FIXME Duplicate being called too much
         for(var result of this.best){
             if(result.getTableString()===record.getTableString())return false;
         }
-        
         return true;
     }
 }

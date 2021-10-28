@@ -103,7 +103,6 @@ function TimetableRenderer(props){
 }
 
 function Spinner(){
-  console.log("HERE")
   return(
     <div class="timetableMain blackBorder textCenter">
       <div class="flexCenterColumn textCenter" >

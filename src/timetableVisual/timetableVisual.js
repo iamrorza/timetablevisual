@@ -15,8 +15,6 @@ function TimetableVisual(props){
     }
 
     
-    //TODO WHat happens if it gets no results?, or when it is loading
-    //TODO maybe using suspense or react-promise
     return (
       <div class="timetableMain">
           
@@ -192,7 +190,7 @@ function Arrow(props){
         "transform": "rotate(" + (props.rotate*180).toString().concat("deg)")
     }
     return(
-        <div class="arrow" onClick={()=>props.changeDay(( props.day-1+props.rotate*2)%5 )}>
+        <div class="arrow" onClick={()=>props.changeDay(( Math.abs(props.day-1+props.rotate*2)%5) )}>
             <img src={arrow} style={style}/>
         </div>
     )
