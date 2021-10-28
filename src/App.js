@@ -45,12 +45,9 @@ function App() {
 
 function blockArray(ar){
   var blockArray = []
-
-  console.log(ar)
   for(var i = 0;i < ar.length; ++i){
     blockArray.push(new Block(ar[i][0],ar[i][1],parseFloat(ar[i][2]),ar[i][3]))
   } 
-  console.log(blockArray)
   return blockArray
 }
 
@@ -62,7 +59,7 @@ function Thing(props){
   )
 }
 
-//TODO PROBABLY FUCKING CRY, THEN SOMEHOW PUT PROMISES HERE? (HOPEFULLY)
+
 function TimetableRenderer(props){
   
 
@@ -77,17 +74,17 @@ function TimetableRenderer(props){
   const[created,setCreated]=useState(false)
   const[data,setData]=useState(null)
   let prom = () => new Promise(function(resolve, reject) {
+
     setTimeout(function(){
-      console.log(props)
     let ba = blockArray(props.classes)
     let tt = new Timetable(ba,props.preferredDays,[[],[],[],[],[]])
     let results = tt.permute(tt.blockArray,0)
-    console.log(results)
+    //console.log(results)
     
     setCreated(true);
     setData(results)
     resolve(results)
-    },5000)
+    },3000)
     
   })
   
@@ -98,14 +95,26 @@ function TimetableRenderer(props){
   //console.log(results.promiseState)
   if(data == null){
     return (
-      <p1>TIMETABLE IS BEING CREATED</p1>
+      <Spinner />
     );
   } else{
-        console.log(data)
         return <TimetableVisual results={data} />
   }
 }
 
+function Spinner(){
+  console.log("HERE")
+  return(
+    <div class="timetableMain blackBorder textCenter">
+      <div class="flexCenterColumn textCenter" >
+      <div class="spinner"><div></div><div></div><div></div></div>
+        TIMETABLE IS BEING GENERATED
+        <div class="spinner"><div></div><div></div><div></div></div>
+      </div>
+        
+    </div>
+  )
+}
 
 
 export default App;
