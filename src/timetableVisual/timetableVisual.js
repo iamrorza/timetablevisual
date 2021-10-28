@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import arrow from "../images/arrowImage.png"
 function TimetableVisual(props){
+    
     const[day, setDay] = useState(0);
 
     let rowArray=[];
@@ -14,7 +15,8 @@ function TimetableVisual(props){
     }
 
     
-    //TODO WHat happens if it gets no results?
+    //TODO WHat happens if it gets no results?, or when it is loading
+    //TODO maybe using suspense or react-promise
     return (
       <div class="timetableMain">
           
@@ -30,6 +32,7 @@ function TimetableVisual(props){
 
 
 function Blocks(props){
+    
     const splitArray = props.results.best[props.day].table.split(",").filter(isNotEmpty)
 
     let blockArray = [];

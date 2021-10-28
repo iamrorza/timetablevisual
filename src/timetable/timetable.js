@@ -142,9 +142,11 @@ class Timetable{
         if(k===ar.length){
             this.recursiveCheck(0,ar)
         }
-    }
 
-    //FIXME strings sometimes missing last float character, other times its fine ????? Figure out
+        if(k===0){
+            return this.bestResults
+        }
+    }
     stringify(){
         this.sortDays()
         var string = "";
